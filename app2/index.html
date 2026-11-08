@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/app2/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Mestre24 — encontre profissionais de confiança em Moçambique.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="mestre24">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>Mestre24 — Encontre quem sabe fazer</title>
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <div id="mestre24-loader" role="status" aria-label="A carregar o Mestre24">
+    <img src="assets/assets/branding/mestre24-golden-worker.png" alt="Mestre24" />
+    <strong>MESTRE<span>24</span></strong>
+    <small>A carregar o seu espaço...</small>
+    <div class="mestre24-loader-bar" aria-hidden="true"><i></i></div>
+  </div>
+  <style>
+    html, body { margin: 0; min-height: 100%; background: #061526; }
+    #mestre24-loader {
+      position: fixed; inset: 0; z-index: 9999; display: flex;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; color: #fff; background:
+        radial-gradient(circle at 50% 35%, #12396c 0, #061526 58%);
+      font-family: Arial, sans-serif; transition: opacity .25s ease;
+    }
+    #mestre24-loader img { width: 118px; height: 118px; object-fit: contain; }
+    #mestre24-loader strong { font-size: 29px; letter-spacing: 2px; }
+    #mestre24-loader strong span { color: #f9bb16; }
+    #mestre24-loader small { color: #b9d5ff; font-size: 13px; }
+    .mestre24-loader-bar { width: 128px; height: 3px; overflow: hidden; border-radius: 5px; background: #29466a; }
+    .mestre24-loader-bar i { display: block; width: 45%; height: 100%; border-radius: inherit; background: #f9bb16; animation: mestre24-loading 1.1s infinite ease-in-out; }
+    @keyframes mestre24-loading { 0% { transform: translateX(-100%); } 100% { transform: translateX(285%); } }
+    #mestre24-loader.is-hidden { opacity: 0; pointer-events: none; }
+  </style>
+  <!--
+    You can customize the "flutter_bootstrap.js" script.
+    This is useful to provide a custom configuration to the Flutter loader
+    or to give the user feedback during the initialization process.
+
+    For more details:
+    * https://docs.flutter.dev/platform-integration/web/initialization
+  -->
+  <script>
+    (function () {
+      var cleanupKey = 'mestre24-sw-clean-v2';
+      if (!('serviceWorker' in navigator) || sessionStorage.getItem(cleanupKey)) return;
+      Promise.all([
+        navigator.serviceWorker.getRegistrations().then(function (registrations) {
+          return Promise.all(registrations.map(function (registration) { return registration.unregister(); }));
+        }),
+        'caches' in window ? caches.keys().then(function (keys) {
+          return Promise.all(keys.map(function (key) { return caches.delete(key); }));
+        }) : Promise.resolve()
+      ]).then(function () {
+        sessionStorage.setItem(cleanupKey, '1');
+        window.location.reload();
+      });
+    }());
+    window.addEventListener('flutter-first-frame', function () {
+      var loader = document.getElementById('mestre24-loader');
+      if (loader) {
+        loader.classList.add('is-hidden');
+        window.setTimeout(function () { loader.remove(); }, 300);
+      }
+    });
+    window.setTimeout(function () {
+      var loader = document.getElementById('mestre24-loader');
+      if (!loader) return;
+      loader.querySelector('small').textContent = 'Ainda a ligar ao Mestre24...';
+      window.setTimeout(function () {
+        var current = document.getElementById('mestre24-loader');
+        if (current) {
+          current.classList.add('is-hidden');
+          window.setTimeout(function () { current.remove(); }, 300);
+        }
+      }, 5000);
+    }, 8000);
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
