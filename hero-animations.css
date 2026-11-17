@@ -1,0 +1,31 @@
+/* Animações do hero Mestre24, inspiradas na referência enviada. */
+.hero-animated{position:relative;isolation:isolate;overflow:hidden}
+.hero-content{position:relative;z-index:1}
+.hero-title span{display:inline-block;background:linear-gradient(110deg,#ffbf17,#ff8d18,#ffd45b,#ffbf17);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:heroShine 5s linear infinite}
+.hero-reveal{opacity:0;transform:translateY(18px);animation:heroReveal .8s cubic-bezier(.2,.8,.2,1) forwards}
+.hero-reveal:nth-child(1){animation-delay:.08s}.hero-reveal:nth-child(2){animation-delay:.18s}.hero-reveal:nth-child(3){animation-delay:.3s}.hero-reveal:nth-child(4){animation-delay:.42s}.hero-reveal:nth-child(5){animation-delay:.55s}
+@keyframes heroReveal{to{opacity:1;transform:none}}
+@keyframes heroShine{to{background-position:-260% 0}}
+.hero-ambient{position:absolute;inset:-30px;z-index:0;pointer-events:none;overflow:hidden;background:radial-gradient(circle at 50% 45%,#ffbf1712,transparent 36%)}
+.hero-ambient::before,.hero-ambient::after{content:"";position:absolute;width:260px;height:260px;border:1px solid #ffbf172e;border-radius:50%;animation:ambientOrbit 13s linear infinite}
+.hero-ambient::before{right:-80px;top:20px}.hero-ambient::after{left:-120px;bottom:-140px;width:340px;height:340px;animation-direction:reverse}
+@keyframes ambientOrbit{to{transform:rotate(360deg) translateX(18px) rotate(-360deg)}}
+.ambient-tool{position:absolute;display:grid;place-items:center;width:52px;height:52px;border-radius:16px;background:#fff;border:1px solid #e4eaf3;box-shadow:0 12px 25px #071a3a17;font-size:25px;animation:toolFloat 4.5s ease-in-out infinite alternate}
+.tool-one{left:4%;top:18%;animation-delay:.3s}.tool-two{right:5%;top:12%;animation-delay:1.1s}.tool-three{right:11%;bottom:9%;animation-delay:1.8s}
+@keyframes toolFloat{from{transform:translateY(3px) rotate(-7deg)}to{transform:translateY(-15px) rotate(7deg)}}
+.ambient-dot{position:absolute;width:7px;height:7px;background:var(--gold);border-radius:50%;box-shadow:0 0 0 8px #ffbf1720,0 0 24px #ffbf17;animation:dotPulse 2.4s ease-in-out infinite}.dot-one{left:35%;top:16%}.dot-two{right:38%;bottom:13%;animation-delay:1.2s}
+@keyframes dotPulse{50%{transform:scale(.55);opacity:.55}}
+.hero-card{animation:cardIn 1s cubic-bezier(.2,.8,.2,1) .18s both;transform-origin:center}
+@keyframes cardIn{from{opacity:0;transform:translateX(24px) scale(.96)}to{opacity:1;transform:none}}
+.hero-grid-lines{position:absolute;inset:0;opacity:.16;background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(135deg,transparent,#000 35%,#000 68%,transparent);animation:gridDrift 14s linear infinite}
+@keyframes gridDrift{to{background-position:36px 36px}}
+.hero-pulse{position:absolute;left:42%;top:40%;width:92px;height:92px;border:1px solid #ffbf1775;border-radius:50%;animation:pulseRing 3.2s ease-out infinite}
+@keyframes pulseRing{0%{transform:scale(.5);opacity:0}25%{opacity:.8}100%{transform:scale(3.2);opacity:0}}
+.worker-mark{animation:markFloat 4s ease-in-out infinite alternate;text-shadow:0 0 25px #ffbf1740}
+@keyframes markFloat{to{transform:translateY(-8px)}}
+.mini-card{animation:miniFloat 4s ease-in-out infinite alternate}.mini-card.bottom{animation-delay:1.1s}
+@keyframes miniFloat{to{transform:translateY(-7px)}}
+.category-chip{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;animation:chipFloat 4s ease-in-out infinite alternate}.category-chip:nth-child(2n){animation-delay:.35s}.category-chip:nth-child(3n){animation-delay:.7s}.category-chip:hover{transform:translateY(-6px);border-color:#ffbf17;box-shadow:0 16px 30px #071a3a14}
+@keyframes chipFloat{to{transform:translateY(-4px)}}
+@media(max-width:760px){.hero-ambient{inset:-10px}.ambient-tool{width:40px;height:40px;font-size:19px}.tool-one{left:0;top:9%}.tool-two{right:0;top:5%}.tool-three{right:2%;bottom:5%}.dot-one{left:25%;top:12%}.dot-two{right:25%;bottom:10%}.hero-card{animation-delay:.1s}.hero-pulse{left:38%;top:38%}}
+@media(prefers-reduced-motion:reduce){.hero-reveal,.hero-card{opacity:1;transform:none;animation:none}.hero-title span,.ambient-tool,.ambient-dot,.hero-grid-lines,.hero-pulse,.worker-mark,.mini-card,.category-chip{animation:none}.hero-ambient::before,.hero-ambient::after{animation:none}}
