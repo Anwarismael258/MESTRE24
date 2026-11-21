@@ -20,3 +20,13 @@
 @keyframes serviceMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(max-width:760px){.categories{padding:70px 0}.service-marquee{margin-top:32px}.service-chip{min-height:54px;padding:0 18px;font-size:14px;border-radius:15px}.service-track{animation-duration:27s}}
 @media(prefers-reduced-motion:reduce){.service-track{animation:none}.service-marquee{overflow-x:auto}}
+
+/* Interações de clique e hero limpo. */
+.hero-copy::before,.hero-copy::after{content:none!important;display:none!important}
+.button,.nav-cta,.card-link,.text-link,.service-chip,.steps article,.audience-card,.partner-grid a{position:relative;overflow:hidden;transform-origin:center;transition:transform .18s ease,box-shadow .18s ease}
+.button:active,.nav-cta:active,.card-link:active,.text-link:active,.service-chip:active,.steps article:active,.audience-card:active,.partner-grid a:active{transform:scale(.98)}
+.click-pulse{animation:clickPulse .42s ease-out both}
+.click-ripple{position:absolute;pointer-events:none;border-radius:50%;background:rgba(255,255,255,.46);transform:scale(0);animation:clickRipple .52s ease-out forwards}
+@keyframes clickPulse{0%{filter:brightness(1)}45%{filter:brightness(1.1)}100%{filter:brightness(1)}}
+@keyframes clickRipple{to{opacity:0;transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){.click-pulse{animation:none}.click-ripple{display:none}.button,.nav-cta,.card-link,.text-link,.service-chip,.steps article,.audience-card,.partner-grid a{transition:none}}
